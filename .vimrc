@@ -17,6 +17,27 @@ set smartindent
 "Util
 inoremap jk <esc>
 
+"Toggle copy
+nnoremap <C-c> :call Tcopy()<CR>
+let t:c = 0
+fu Tcopy()
+	if (t:c==#0)
+		set mouse=
+		set norelativenumber
+		set nonumber
+	else
+		set mouse=a
+		set number
+		set relativenumber
+	endif
+
+	if (t:c==#0)
+		let t:c = 1
+	else
+		let t:c = 0
+	endif
+endfu
+
 "Shift
 inoremap <M-Up> <esc>ddkkpi
 inoremap <M-Down> <esc>ddpi
