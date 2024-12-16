@@ -63,6 +63,23 @@ runJava ()
 	fi
 }
 
+runPython()
+{
+	if [ -z "$in" ] && [ -z "$out" ]; then
+		python3 $file
+
+	elif [ -z "$out" ]; then
+		python3 $file <$in
+
+	elif [ -z "$in" ]; then
+		python3 $file >$out
+	
+	else
+		python3 $file <$in >$out
+	
+	fi
+}
+
 ## Define input and output ##
 defArgs ()
 {
@@ -98,5 +115,8 @@ elif [ $ext == 'cpp' ]; then
 elif [ $ext == 'java' ]; then
 	compJava
 	runJava
+
+elif [ $ext == 'py' ]; then
+	runPython
 
 fi
