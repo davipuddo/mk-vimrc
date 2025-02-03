@@ -14,89 +14,72 @@ args=$#
 
 compC ()
 {
-    gcc -o $fname $file -lm
+	gcc -o $fname $file -lm
 }
 
 compCpp ()
 {
-    g++ -o $fname $file -lm
+	g++ -o $fname $file -lm
 }
 
 compJava ()
 {
-    javac $file
+	javac $file
 }
 
 ## Run compiled code ##
 
 runC ()
 {
-    if [ -z "$in" ] && [ -z "$out" ]; then
-        ./$fname
+	if [ -z "$in" ] && [ -z "$out" ]; then
+		./$fname 
 
-    elif [ -z "$out" ]; then
-        ./$fname <$in
+	elif [ -z "$out" ]; then
+		./$fname <$in
 
-    elif [ -z "$in" ]; then
-        ./$fname >$out
-
-    else
-        ./$fname <$in >$out
-
-    fi
+	elif [ -z "$in" ]; then
+		./$fname >$out
+	
+	else
+		./$fname <$in >$out
+	
+	fi
 }
 
 runJava ()
 {
-    if [ -z "$in" ] && [ -z "$out" ]; then
-        java $fname
+	if [ -z "$in" ] && [ -z "$out" ]; then
+		java $fname 
 
-    elif [ -z "$out" ]; then
-        java $fname <$in
+	elif [ -z "$out" ]; then
+		java $fname <$in
 
-    elif [ -z "$in" ]; then
-        java $fname >$out
-
-    else
-        java $fname <$in >$out
-
-    fi
+	elif [ -z "$in" ]; then
+		java $fname >$out
+	
+	else
+		java $fname <$in >$out
+	
+	fi
 }
 
 runPython ()
 {
-    python3 $file
-}
-
-runPython()
-{
-	if [ -z "$in" ] && [ -z "$out" ]; then
-		python3 $file
-
-	elif [ -z "$out" ]; then
-		python3 $file <$in
-
-	elif [ -z "$in" ]; then
-		python3 $file >$out
-	
-	else
-		python3 $file <$in >$out
-	
-	fi
+	python3 $file
 }
 
 ## Define input and output ##
 defArgs ()
 {
-    if [ $args == 2 ]; then
+	if [ $args == 2 ]; then
+		
+		local tmp=$"${in##*.}"
 
-        local tmp=$"${in##*.}"
-
-        if [ $tmp == "out" ]; then
-            out=$in;
-            in=""
-        fi
-    fi
+		if [ $tmp == "out" ]; then
+			out=$in;
+			in=""
+		fi
+	fi
 }
 
 # Compile & run code
@@ -104,28 +87,23 @@ defArgs ()
 defArgs
 
 if [ "$ext" == "$fname" ]; then
-    echo "ERROR: No file extension was given!"
+	echo "ERROR: No file extension was given!"
 
 elif [ $# == 0 ]; then
-    echo "ERROR: No parameters where given!"
+	echo "ERROR: No parameters where given!"
 
 elif [ $ext == 'c' ]; then
-    compC
-    runC
+	compC
+	runC
 
 elif [ $ext == 'cpp' ]; then
-    compCpp
-    runC
+	compCpp
+	runC
 
 elif [ $ext == 'java' ]; then
-    compJava
-    runJava
+	compJava
+	runJava
 
 elif [ $ext == 'py' ]; then
-<<<<<<< HEAD
-    runPython
-=======
 	runPython
-
->>>>>>> aa42aa62d9f4e72ca34fa892812cc33a96961611
 fi

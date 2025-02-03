@@ -2,6 +2,14 @@
 
 syntax on
 
+"set colors
+"hi Statement ctermfg=4
+"hi LineNr ctermfg=4 
+"hi CursorLineNr ctermfg=4
+"hi PreProc ctermfg=6
+"hi Constant ctermfg=3
+"hi Type ctermfg=9
+
 set number
 set relativenumber
 set mouse=a
@@ -16,6 +24,7 @@ set smartindent
 
 "Util
 inoremap jk <esc>
+vnoremap jk <esc> 
 
 "Toggle copy
 nnoremap <C-c> :call Tcopy()<CR>
@@ -38,6 +47,23 @@ fu Tcopy()
 	endif
 endfu
 
+"Toggle Hex Editor
+nnoremap <S-x> :call Thex()<CR>
+let t:h = 0
+fu Thex()
+	if (t:h==#0)
+		exec "%!xxd"
+	else
+		exec "%!xxd -r"
+	endif
+
+	if (t:h==#0)
+		let t:h = 1
+	else
+		let t:h = 0
+	endif
+endfu
+
 "Shift
 inoremap <M-Up> <esc>ddkkpi
 inoremap <M-Down> <esc>ddpi
@@ -56,6 +82,7 @@ aug c_keymap
 au!
 autocmd FileType c,cpp iabbrev <buffer> MAINC #include<esc>ddpi<BS><esc>wwa <stdio.h><esc>pwwa <stdlib.h><esc>pwwa <stdbool.h><esc>pwwa <string.h><esc>pwwa <math.h><esc>pwwa <limits.h><esc>pwwa <time.h><esc>o<CR>int main(void)<esc>o{<esc>oreturn(0);<esc>o}<esc>k
 autocmd FileType c,cpp iabbrev <buffer> println printf("\n");<esc>F\i
+autocmd FileType c,cpp iabbrev <buffer> INC <esc>xa><esc>0i#include <<esc>o
 aug end
 
 "CSS
