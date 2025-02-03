@@ -52,8 +52,11 @@ autocmd FileType java iabbrev <buffer> boiler public class x<esc>o{<CR>public st
 autocmd FileType java iabbrev <buffer> SYSO System.out.println ();<esc>F(a
 
 "C
-autocmd FileType c iabbrev <buffer> MAINC #include<esc>ddpi<BS><esc>wwa <stdio.h><esc>pwwa <stdlib.h><esc>pwwa <stdbool.h><esc>pwwa <string.h><esc>pwwa <math.h><esc>pwwa <limits.h><esc>pwwa <time.h><esc>o<CR>int main(void)<esc>o{<esc>oreturn(0);<esc>o}<esc>k
-autocmd FileType c iabbrev <buffer> println printf("\n");<esc>F\i
+aug c_keymap
+au!
+autocmd FileType c,cpp iabbrev <buffer> MAINC #include<esc>ddpi<BS><esc>wwa <stdio.h><esc>pwwa <stdlib.h><esc>pwwa <stdbool.h><esc>pwwa <string.h><esc>pwwa <math.h><esc>pwwa <limits.h><esc>pwwa <time.h><esc>o<CR>int main(void)<esc>o{<esc>oreturn(0);<esc>o}<esc>k
+autocmd FileType c,cpp iabbrev <buffer> println printf("\n");<esc>F\i
+aug end
 
 "CSS
 autocmd FileType css iabbrev <buffer> IMP !important
@@ -70,3 +73,7 @@ nnoremap <C-q> :w<CR>
 "Open terminal
 nnoremap <C-t> :vs a<CR>:terminal<CR><C-w><C-w>:q<CR>
 nnoremap <S-t> :terminal<CR>
+
+"Force close
+nnoremap <C-x> :q!<CR>
+

@@ -68,6 +68,23 @@ runPython ()
     python3 $file
 }
 
+runPython()
+{
+	if [ -z "$in" ] && [ -z "$out" ]; then
+		python3 $file
+
+	elif [ -z "$out" ]; then
+		python3 $file <$in
+
+	elif [ -z "$in" ]; then
+		python3 $file >$out
+	
+	else
+		python3 $file <$in >$out
+	
+	fi
+}
+
 ## Define input and output ##
 defArgs ()
 {
@@ -105,5 +122,10 @@ elif [ $ext == 'java' ]; then
     runJava
 
 elif [ $ext == 'py' ]; then
+<<<<<<< HEAD
     runPython
+=======
+	runPython
+
+>>>>>>> aa42aa62d9f4e72ca34fa892812cc33a96961611
 fi
