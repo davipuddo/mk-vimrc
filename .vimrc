@@ -3,12 +3,13 @@
 syntax on
 
 "set colors
-"hi Statement ctermfg=4
-"hi LineNr ctermfg=4 
-"hi CursorLineNr ctermfg=4
-"hi PreProc ctermfg=6
-"hi Constant ctermfg=3
-"hi Type ctermfg=9
+hi Statement ctermfg=4
+hi LineNr ctermfg=4 
+hi CursorLineNr ctermfg=4
+hi PreProc ctermfg=6
+hi Constant ctermfg=3
+hi Type ctermfg=9
+hi Search ctermfg=15 ctermbg=4
 
 set number
 set relativenumber
@@ -21,6 +22,9 @@ set shiftwidth=4
 
 set autoindent
 set smartindent
+
+"Set search highlight
+set hls
 
 "Util
 inoremap jk <esc>
@@ -104,3 +108,12 @@ nnoremap <S-t> :terminal<CR>
 "Force close
 nnoremap <C-x> :q!<CR>
 
+"Set cursor
+if &term =~ '^xterm'
+
+	"Normal mode
+	let &t_EI .= "\<Esc>[0 q"
+
+	"Insert mode
+	let &t_SI .= "\<Esc>[6 q"
+endif
