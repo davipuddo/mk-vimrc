@@ -4,9 +4,15 @@
 file=$1
 ext="${file##*.}"
 fname=$"${file%.*}"
-in=$2
-out=$3
-args=$#
+argc=$#
+
+# Shift comand arguments
+shift
+for i in "${@:2}"
+do :
+done
+
+argv=$@
 
 # Functions #
 
@@ -31,70 +37,30 @@ compJava ()
 
 runC ()
 {
-	if [ -z "$in" ] && [ -z "$out" ]; then
-		./$fname 
-
-	elif [ -z "$out" ]; then
-		./$fname <$in
-
-	elif [ -z "$in" ]; then
-		./$fname >$out
-	
-	else
-		./$fname <$in >$out
-	
-	fi
+	./$fname $argv
 }
 
 runJava ()
 {
-	if [ -z "$in" ] && [ -z "$out" ]; then
-		java $fname 
-
-	elif [ -z "$out" ]; then
-		java $fname <$in
-
-	elif [ -z "$in" ]; then
-		java $fname >$out
-	
-	else
-		java $fname <$in >$out
-	
-	fi
+	java $fname $argv
 }
 
 runPython ()
 {
-	python3 $file
+	python3 $file $argv
 }
 
 runSwift ()
 {
-	swift $file
-}
-
-## Define input and output ##
-defArgs ()
-{
-	if [ $args == 2 ]; then
-		
-		local tmp=$"${in##*.}"
-
-		if [ $tmp == "out" ]; then
-			out=$in;
-			in=""
-		fi
-	fi
+	swift $file $argv
 }
 
 # Compile & run code
 
-defArgs
-
 if [ "$ext" == "$fname" ]; then
 	echo "ERROR: No file extension was given!"
 
-elif [ $# == 0 ]; then
+elif [ $argc == 0 ]; then
 	echo "ERROR: No parameters where given!"
 
 elif [ $ext == 'c' ]; then
