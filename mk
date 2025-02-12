@@ -68,6 +68,11 @@ runPython ()
 	python3 $file
 }
 
+runSwift ()
+{
+	swift $file
+}
+
 ## Define input and output ##
 defArgs ()
 {
@@ -106,4 +111,8 @@ elif [ $ext == 'java' ]; then
 
 elif [ $ext == 'py' ]; then
 	runPython
+
+elif [ $ext == 'swift' ]; then
+	runSwift
+	
 fi
