@@ -32,6 +32,7 @@ hi Constant ctermfg=5
 hi Type ctermfg=9
 hi Search ctermfg=15 ctermbg=12
 hi Comment cterm=italic ctermfg=14
+hi MatchParen ctermfg=15 ctermbg=9
 
 "Define cursor
 if &term =~ '^xterm'
