@@ -3,14 +3,35 @@
 "Enable syntax
 syntax on
 
+" 'h cterm' for colors
+
+"Skip syntax.vim highlights
+let g:syntax_cmd = "skip"
+
+"1  -> Red
+"2  -> LightGreen
+"3  -> Yellow
+"4  -> DarkBlue
+"5  -> Purple
+"6  -> Blue
+"7  -> LightGray
+"8  -> DarkGray
+"9  -> LightRed
+"10 -> Green
+"11 -> LightYellow
+"12 -> LightPurple
+"13 -> LightPink
+"14 -> LightCyan
+"15 -> White
+
 "Define colors
-hi Statement ctermfg=4
-hi LineNr ctermfg=4 
-hi CursorLineNr ctermfg=4
-hi PreProc ctermfg=6
-hi Constant ctermfg=3
+hi Statement ctermfg=2
+hi LineNr ctermfg=9
+hi PreProc ctermfg=14
+hi Constant ctermfg=5
 hi Type ctermfg=9
-hi Search ctermfg=15 ctermbg=4
+hi Search ctermfg=15 ctermbg=12
+hi Comment cterm=italic ctermfg=14
 
 "Define cursor
 if &term =~ '^xterm'
