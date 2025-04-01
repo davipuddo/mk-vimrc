@@ -67,7 +67,7 @@ elif [ $ext == 'c' ]; then
 	compC
 	runC
 
-elif [ $ext == 'cpp' ]; then
+elif [ $ext == 'cpp' ] || [ $ext == 'cc' ]; then
 	compCpp
 	runC
 

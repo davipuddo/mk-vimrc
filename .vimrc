@@ -8,24 +8,25 @@ syntax on
 "Skip syntax.vim highlights
 let g:syntax_cmd = "skip"
 
+"0  -> Black
 "1  -> Red
-"2  -> LightGreen
+"2  -> Green
 "3  -> Yellow
-"4  -> DarkBlue
+"4  -> Blue
 "5  -> Purple
-"6  -> Blue
-"7  -> LightGray
-"8  -> DarkGray
+"6  -> Cyan
+"7  -> Lime
+"8  -> Gray
 "9  -> LightRed
-"10 -> Green
+"10 -> LightGreen
 "11 -> LightYellow
-"12 -> LightPurple
-"13 -> LightPink
+"12 -> LightBlue
+"13 -> LightPurple
 "14 -> LightCyan
-"15 -> White
+"15 -> LightLime
 
 "Define colors
-hi Statement ctermfg=2
+hi Statement ctermfg=10
 hi LineNr ctermfg=9
 hi PreProc ctermfg=14
 hi Constant ctermfg=5
