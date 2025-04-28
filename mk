@@ -20,12 +20,12 @@ argv=$@
 
 compC ()
 {
-	gcc -o $fname $file -lm
+	gcc -o $fname $file -lm -Wall
 }
 
 compCpp ()
 {
-	g++ -o $fname $file -lm
+	g++ -o $fname $file -lm -Wall
 }
 
 compJava ()
