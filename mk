@@ -23,9 +23,14 @@ compC ()
 	gcc -o $fname $file -lm -Wall
 }
 
-compCpp ()
+compCPP ()
 {
 	g++ -o $fname $file -lm -Wall
+}
+
+compCSharp ()
+{
+	mcs $file -out:$fname
 }
 
 compJava ()
@@ -35,7 +40,7 @@ compJava ()
 
 ## Run compiled code ##
 
-runC ()
+run ()
 {
 	./$fname $argv
 }
@@ -65,11 +70,15 @@ elif [ $argc == 0 ]; then
 
 elif [ $ext == 'c' ]; then
 	compC
-	runC
+	run
 
 elif [ $ext == 'cpp' ] || [ $ext == 'cc' ]; then
-	compCpp
-	runC
+	compCPP
+	run
+
+elif [ $ext == 'cs' ]; then
+	compCSharp
+	run
 
 elif [ $ext == 'java' ]; then
 	compJava
