@@ -60,13 +60,21 @@ runSwift ()
 	swift $file $argv
 }
 
+runLua ()
+{
+	lua $file $argv
+}
+
 # Compile & run code
 
-if [ "$ext" == "$fname" ]; then
-	echo "ERROR: No file extension was given!"
+if [ ! -f $file ]; then
+	echo "ERROR: The given file does not exist!"
 
 elif [ $argc == 0 ]; then
 	echo "ERROR: No parameters where given!"
+
+elif [ "$ext" == "$fname" ]; then
+	echo "ERROR: No file extension was given!"
 
 elif [ $ext == 'c' ]; then
 	compC
@@ -89,5 +97,10 @@ elif [ $ext == 'py' ]; then
 
 elif [ $ext == 'swift' ]; then
 	runSwift
-	
+
+elif [ $ext == 'lua' ]; then
+	runLua
+
+else 
+	printf "ERROR: The given file extension resulted in no matches!\n-> [$ext]\n"
 fi
