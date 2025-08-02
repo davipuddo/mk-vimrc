@@ -5,34 +5,42 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+	use 'wbthomason/packer.nvim'
 
-  use {
+	use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.8',
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
-  }
+	}
 
-  use ({
+	use { 
+		'nvim-telescope/telescope-fzf-native.nvim', 
+		run = 'make',
+		cond = vim.fn.executable('make') == 1
+	} 
+
+	use {'nvim-tree/nvim-web-devicons'}
+
+	use ({
 
 	  "folke/tokyonight.nvim",
 	  lazy = false,
 	  priority = 1000,
 	  opts = {},
-  })
+	})
 
-  use {'nyoom-engineering/oxocarbon.nvim'}
+	use {'nyoom-engineering/oxocarbon.nvim'}
 
-  use ("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"}) 
+	use ("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"}) 
 
-  use ('nvim-treesitter/playground')
+	use ('nvim-treesitter/playground')
 
-  use ("neovim/nvim-lspconfig")
+	use ("neovim/nvim-lspconfig")
 
-  use ('ms-jpq/coq_nvim', {branch = 'coq'})
+	use ('ms-jpq/coq_nvim', {branch = 'coq'})
 
-  use ('ms-jpq/coq.artifacts', {branch = 'artifacts'})
+	use ('ms-jpq/coq.artifacts', {branch = 'artifacts'})
 
-  use ('ms-jpq/coq.thirdparty', {branch = '3p'})
+	use ('ms-jpq/coq.thirdparty', {branch = '3p'})
 
-end)
+	end)

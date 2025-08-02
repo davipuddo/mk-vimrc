@@ -58,3 +58,6 @@ vim.keymap.set("n", "<leader>r", "vey:s/<C-r>0/");
 
 --	Replace All
 vim.keymap.set("n", "<leader>R", "vey:%s/<C-r>0/");
+
+-- Open current directory
+vim.keymap.set("n", "<leader>D", ":vi .<CR>");

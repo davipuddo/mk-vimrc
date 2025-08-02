@@ -3,9 +3,8 @@ function comment(ctype)
 end
 
 function uncomment()
-	vim.cmd("normal! 04x");
+	vim.cmd("normal! 03x");
 end
-
 function commentBlock(ctype)
 
 	local s = vim.fn.line("'<");
