@@ -14,6 +14,7 @@ function Colors(color)
 
 	vim.api.nvim_set_hl(0, "TelescopePreviewTitle",   { bg = "#262626", fg = "#ffffff" })
 	vim.api.nvim_set_hl(0, "TelescopePreviewBorder",  { bg = "#262626", fg = "#ff7eb6" })
+	vim.api.nvim_set_hl(0, "TelescopePreviewLine",    { bg = "#ff7eb6", fg = "#ffffff", bold = true})
 
 	vim.api.nvim_set_hl(0, "TelescopeSelection",      { bg = "#78a9ff", fg = "#ffffff", bold = true })
 

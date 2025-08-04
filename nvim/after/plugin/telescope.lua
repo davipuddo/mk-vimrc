@@ -9,6 +9,15 @@ end)
 require('telescope').setup {
 	defaults = {
 		color_devicons = true,
+		layout_strategy = 'horizontal', 
+		layout_config = {
+			mirror = false,
+			prompt_position = 'bottom',
+			height = .85, 
+			width = .85,
+			preview_cutoff = 80,
+			preview_width = 65,
+		}
 	},
 	extensions = {
 		fzf = {
