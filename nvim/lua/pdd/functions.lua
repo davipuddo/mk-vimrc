@@ -2,8 +2,14 @@ function comment(ctype)
 	vim.cmd("normal! 0i"..ctype.."\t");
 end
 
-function uncomment()
-	vim.cmd("normal! 03x");
+function uncomment(ctype)
+
+	n = ctype:len()+1;
+	if (ctype == "#") then -- Fix [\t] being converted to 3 spaces after [#]
+		n = n + 2;
+	end
+
+	vim.cmd("normal! 0"..n.."x");
 end
 function commentBlock(ctype)
 
@@ -39,4 +45,13 @@ end)
 
 function setCompletion(COMPLETION)
 	vim.cmd("inoremap <buffer> BLOB "..COMPLETION);
+end
+
+function toggleHex()
+	if (HEX_EDITOR == false) then
+		vim.cmd("%!xxd");
+	else
+		vim.cmd("%!xxd -r");
+	end
+	HEX_EDITOR = not HEX_EDITOR;
 end

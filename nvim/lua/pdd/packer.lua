@@ -32,15 +32,11 @@ return require('packer').startup(function(use)
 	use {'nyoom-engineering/oxocarbon.nvim'}
 
 	use ("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"}) 
-
 	use ('nvim-treesitter/playground')
 
 	use ("neovim/nvim-lspconfig")
+    use { "ms-jpq/coq_nvim", branch = "coq" }
+    use { "ms-jpq/coq.artifacts", branch = "artifacts" }
+    use { 'ms-jpq/coq.thirdparty', branch = "3p" }
 
-	use ('ms-jpq/coq_nvim', {branch = 'coq'})
-
-	use ('ms-jpq/coq.artifacts', {branch = 'artifacts'})
-
-	use ('ms-jpq/coq.thirdparty', {branch = '3p'})
-
-	end)
+end)

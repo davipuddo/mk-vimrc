@@ -1,2 +1,1 @@
 COMMENT_TYPE = "--"
-COMPLETION = "kkkk"

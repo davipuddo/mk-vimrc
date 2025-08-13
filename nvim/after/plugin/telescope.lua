@@ -15,8 +15,8 @@ require('telescope').setup {
 			prompt_position = 'bottom',
 			height = .85, 
 			width = .85,
-			preview_cutoff = 80,
-			preview_width = 65,
+			preview_cutoff = 95,
+			preview_width = .65,
 		}
 	},
 	extensions = {

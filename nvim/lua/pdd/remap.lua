@@ -1,7 +1,10 @@
 require('pdd.functions')
 
+-- Define leader
 vim.g.mapleader = " ";
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex);
+
+-- Open current directory
+vim.keymap.set("n", "<leader>D", vim.cmd.Ex);
 
 -- Exit insertion mode
 vim.keymap.set("i", "jk", "<Esc>"); 
@@ -36,11 +39,11 @@ vim.keymap.set("i", "<M-Down>", "ddp");
 
 	--  Normal mode
 vim.keymap.set("n", "<M-c>", function() comment(COMMENT_TYPE) end) 
-vim.keymap.set("n", "<M-d>", function() uncomment() end) 
+vim.keymap.set("n", "<M-d>", function() uncomment(COMMENT_TYPE) end) 
 
 	--  Insertion mode
 vim.keymap.set("i", "<M-c>", function() comment(COMMENT_TYPE) end) 
-vim.keymap.set("i", "<M-d>", function() uncomment() end) 
+vim.keymap.set("i", "<M-d>", function() uncomment(COMMENT_TYPE) end) 
 
 	--  Visual mode
 vim.keymap.set("x", "<M-c>", function()
@@ -59,5 +62,5 @@ vim.keymap.set("n", "<leader>r", "vey:s/<C-r>0/");
 --	Replace All
 vim.keymap.set("n", "<leader>R", "vey:%s/<C-r>0/");
 
--- Open current directory
-vim.keymap.set("n", "<leader>D", ":vi .<CR>");
+-- Toggle Hex editor
+vim.keymap.set("n", "<leader>X", function() toggleHex() end);
