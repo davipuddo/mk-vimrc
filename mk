@@ -38,6 +38,11 @@ compJava ()
 	javac $file
 }
 
+compRust ()
+{
+	rustc $file
+}
+
 ## Run compiled code ##
 
 run ()
@@ -100,6 +105,10 @@ elif [ $ext == 'swift' ]; then
 
 elif [ $ext == 'lua' ]; then
 	runLua
+
+elif [ $ext == 'rs' ]; then
+	compRust
+	run
 
 else 
 	printf "ERROR: The given file extension resulted in no matches!\n-> [$ext]\n"
