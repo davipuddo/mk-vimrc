@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Define data
 file=$1
 ext="${file##*.}"
 fname=$"${file%.*}"
@@ -43,6 +42,17 @@ compRust ()
 	rustc $file
 }
 
+buildRust ()
+{
+	cargo build
+}
+
+runRust ()
+{
+	cargo run $file
+}
+
+
 ## Run compiled code ##
 
 run ()
@@ -72,44 +82,62 @@ runLua ()
 
 # Compile & run code
 
-if [ ! -f $file ]; then
-	echo "ERROR: The given file does not exist!"
 
-elif [ $argc == 0 ]; then
+if [ $argc == 0 ]; then
 	echo "ERROR: No parameters where given!"
+
+elif [ -d $file ]; then 	# Rust's cargo case
+
+	dir=$file
+
+	if [ "$dir" == "src" ] && [ -f "$dir/main.rs" ]; then
+
+		file="$dir/main.rs";
+
+		if [ "$1" == "-b" ]; then
+			buildRust
+		else
+			runRust
+		fi
+	else
+		echo "ERROR: A directory was given when a file was expected!"
+	fi
+
+elif [ ! -f $file ]; then		# Other cases
+
+	echo "ERROR: The given file does not exist!"
 
 elif [ "$ext" == "$fname" ]; then
 	echo "ERROR: No file extension was given!"
 
-elif [ $ext == 'c' ]; then
+elif [ "$ext" == 'c' ]; then
 	compC
 	run
 
-elif [ $ext == 'cpp' ] || [ $ext == 'cc' ]; then
+elif [ "$ext" == 'cpp' ] || [ "$ext" == 'cc' ]; then
 	compCPP
 	run
 
-elif [ $ext == 'cs' ]; then
+elif [ "$ext" == 'cs' ]; then
 	compCSharp
 	run
 
-elif [ $ext == 'java' ]; then
+elif [ "$ext" == 'java' ]; then
 	compJava
 	runJava
 
-elif [ $ext == 'py' ]; then
+elif [ "$ext" == 'py' ]; then
 	runPython
 
-elif [ $ext == 'swift' ]; then
+elif [ "$ext" == 'swift' ]; then
 	runSwift
 
-elif [ $ext == 'lua' ]; then
+elif [ "$ext" == 'lua' ]; then
 	runLua
 
-elif [ $ext == 'rs' ]; then
+elif [ "$ext" == 'rs' ]; then
 	compRust
 	run
-
 else 
 	printf "ERROR: The given file extension resulted in no matches!\n-> [$ext]\n"
 fi
