@@ -34,9 +34,24 @@ return require('packer').startup(function(use)
 	use ("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"}) 
 	use ('nvim-treesitter/playground')
 
-	use ("neovim/nvim-lspconfig")
     use { "ms-jpq/coq_nvim", branch = "coq" }
     use { "ms-jpq/coq.artifacts", branch = "artifacts" }
     use { 'ms-jpq/coq.thirdparty', branch = "3p" }
+
+
+	use {
+		"neovim/nvim-lspconfig",
+		requires = {
+			{
+				"folke/lazydev.nvim",
+				ft = "lua", -- only load on lua files
+				opts = {
+					 library = {
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
+		}
+	}
 
 end)

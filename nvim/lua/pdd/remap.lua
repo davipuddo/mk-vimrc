@@ -37,14 +37,9 @@ vim.keymap.set("i", "<M-Down>", "ddp");
 
 -- Define comment keybinds
 
-	--  Normal mode
-vim.keymap.set("n", "<M-c>", function() comment(COMMENT_TYPE) end) 
-vim.keymap.set("n", "<M-d>", function() uncomment(COMMENT_TYPE) end) 
-
-	--  Insertion mode
-vim.keymap.set("i", "<M-c>", function() comment(COMMENT_TYPE) end) 
-vim.keymap.set("i", "<M-d>", function() uncomment(COMMENT_TYPE) end) 
-
+	--  Normal/Insertion mode
+vim.keymap.set({"n", "i"}, "<M-c>", function() comment(COMMENT_TYPE) end) 
+vim.keymap.set({"n", "i"}, "<M-d>", function() uncomment(COMMENT_TYPE) end) 
 	--  Visual mode
 vim.keymap.set("x", "<M-c>", function()
 	vim.cmd("normal! gv")
