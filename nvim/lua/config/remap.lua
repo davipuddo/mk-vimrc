@@ -1,4 +1,4 @@
-require('pdd.functions')
+require('config.functions')
 
 -- Define leader
 vim.g.mapleader = " ";
@@ -37,14 +37,9 @@ vim.keymap.set("i", "<M-Down>", "ddp");
 
 -- Define comment keybinds
 
-	--  Normal mode
-vim.keymap.set("n", "<M-c>", function() comment(COMMENT_TYPE) end) 
-vim.keymap.set("n", "<M-d>", function() uncomment(COMMENT_TYPE) end) 
-
-	--  Insertion mode
-vim.keymap.set("i", "<M-c>", function() comment(COMMENT_TYPE) end) 
-vim.keymap.set("i", "<M-d>", function() uncomment(COMMENT_TYPE) end) 
-
+	--  Normal/Insertion mode
+vim.keymap.set({"n", "i"}, "<M-c>", function() comment(COMMENT_TYPE) end) 
+vim.keymap.set({"n", "i"}, "<M-d>", function() uncomment(COMMENT_TYPE) end) 
 	--  Visual mode
 vim.keymap.set("x", "<M-c>", function()
 	vim.cmd("normal! gv")
@@ -64,3 +59,8 @@ vim.keymap.set("n", "<leader>R", "vey:%s/<C-r>0/");
 
 -- Toggle Hex editor
 vim.keymap.set("n", "<leader>X", function() toggleHex() end);
+
+-- Toggle diagnostics
+vim.keymap.set("n", "<leader>LD", function() 
+	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end);

@@ -55,3 +55,4 @@ function toggleHex()
 	end
 	HEX_EDITOR = not HEX_EDITOR;
 end
+
