@@ -3,5 +3,18 @@ require("config.remap")
 require("config.colors")
 require("plugins.floaterm")
 
+<<<<<<< HEAD
 COMMENT_TYPE = "//"
 HEX_EDITOR = false;
+=======
+vim.wo.relativenumber = true;
+vim.wo.number = true;
+vim.o.tabstop = 4;
+vim.o.shiftwidth = 4;
+vim.cmd.set("conceallevel=1")
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.cmd("COQnow --shut-up")
+	end,
+})
+>>>>>>> 1cac5a31e9f3b598550768bab77cddec797cd581
