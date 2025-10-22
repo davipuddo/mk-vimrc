@@ -1,4 +1,4 @@
-require('pdd.functions')
+require('config.functions')
 
 -- Define leader
 vim.g.mapleader = " ";
@@ -59,3 +59,8 @@ vim.keymap.set("n", "<leader>R", "vey:%s/<C-r>0/");
 
 -- Toggle Hex editor
 vim.keymap.set("n", "<leader>X", function() toggleHex() end);
+
+-- Toggle diagnostics
+vim.keymap.set("n", "<leader>LD", function() 
+	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end);

@@ -1,15 +1,19 @@
-local function mycolors (opts)
+function _G.mycolors (opts)
 
 	-- Define default colorscheme and colors
-	color = "oxocarbon";
-	transparent = true;
+	local color = "oxocarbon";
+	local transparent = true;
 	local baseColor = "#161616"
 	local commentColor = "#525252"
 
-	if (opts and opts.args ~= "") then 
+	if (opts and opts.args ~= "") then
 		local args = vim.split(opts.args, "%s+")
-		color = args[1];
-		transparent = (args[2] == "true") or false;
+		if (#args == 1) then
+			transparent = (args[1] == "true") or false;
+		else
+			color = args[1];
+			transparent = (args[2] == "true") or false;
+		end
 	end
 
 	vim.cmd.colorscheme(color);
@@ -22,7 +26,7 @@ local function mycolors (opts)
 
 	local accent = "#ff237f"
 	local white = "#ffffff"
-	local blue = "#78a9ff" 
+	local blue = "#78a9ff"
 	local cyan = "#3ddbd9"
 
 	-- Define Telescope's colors
@@ -60,3 +64,5 @@ vim.api.nvim_create_user_command('Colors', mycolors, { nargs="*"});
 vim.api.nvim_create_user_command('ToggleTransparency', function()
 	mycolors({args="oxocarbon "..tostring((not transparent))});
 end, { nargs="*"});
+
+return {}
