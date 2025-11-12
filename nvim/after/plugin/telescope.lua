@@ -5,11 +5,16 @@ vim.keymap.set('n', '<leader>FS', builtin.live_grep, {})
 require('telescope').setup {
 	defaults = {
 		color_devicons = true,
-		layout_strategy = 'horizontal', 
+		layout_strategy = 'horizontal',
+		borderchars = {
+			prompt = { " ", " ", "─", "│", "│", " ", "─", "└" },
+			results = { "─", " ", " ", "│", "┌", "─", " ", "│" },
+			preview = { "─", "│", "─", "│", "┬", "┐", "┘", "┴" },
+		},
 		layout_config = {
 			mirror = false,
 			prompt_position = 'bottom',
-			height = .85, 
+			height = .85,
 			width = .85,
 			preview_cutoff = 95,
 			preview_width = .65,
@@ -22,6 +27,6 @@ require('telescope').setup {
 			override_file_sorter = true,
 			case_mode = "smart_case",
 		}
-  	}
+	}
 }
 require('telescope').load_extension('fzf')

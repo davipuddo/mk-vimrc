@@ -1,6 +1,7 @@
 local lsps = {
 	{ "lua_ls" },
 	{ "clangd" },
+	{ "nvim-flutter/flutter-tools.nvim" },
 	{
 		"pylsp",
 		{
@@ -31,9 +32,8 @@ for _, lsp in pairs(lsps) do
 end
 
 vim.diagnostic.enable(true);
-vim.diagnostic.config({ 
+vim.diagnostic.config({
 	virtual_lines = false,
-	virtual_text = true,
 	virtual_text = {
 		spacing = 16,
 		virt_text_pos = "eol",

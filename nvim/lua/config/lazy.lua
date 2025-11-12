@@ -19,66 +19,81 @@ vim.opt.rtp:prepend(lazypath)
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
 
+
 vim.g.mapleader = " ";
 vim.g.maplocalleader = "\\";
 vim.wo.relativenumber = true;
 vim.wo.number = true;
+vim.o.expandtab = false;
 vim.o.tabstop = 4;
 vim.o.shiftwidth = 4;
+vim.o.timeoutlen = 300;
+vim.opt.showmode = false;
 
 -- Setup lazy.nvim
 require("lazy").setup({
     spec = {
 
-		"neovim/nvim-lspconfig",
+        "neovim/nvim-lspconfig",
 
-		"folke/lazydev.nvim",
+        "folke/lazydev.nvim",
 
-		"williamboman/mason.nvim",
+        "williamboman/mason.nvim",
 
-		{ import = "plugins.lsp" },
+        { import = "plugins.lsp" },
 
-		{
-			'nvim-telescope/telescope.nvim',
-			tag = '0.1.8',
-			dependencies = { 'nvim-lua/plenary.nvim' },
+        {
+            'nvim-telescope/telescope.nvim',
+            tag = '0.1.8',
+            dependencies = { 'nvim-lua/plenary.nvim' },
+        },
+
+        {
+            "ThePrimeagen/harpoon",
+            branch = "harpoon2",
+            dependencies = { {"nvim-lua/plenary.nvim"} }
+        },
+
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+
+        'nvim-tree/nvim-web-devicons',
+
+        'nyoom-engineering/oxocarbon.nvim',
+
+        {
+            "nvim-treesitter/nvim-treesitter",
+            branch = "master",
+            lazy = false,
+            build = ":TSUpdate"
+        },
+
+        'nvim-treesitter/playground',
+
+        {
+            'saghen/blink.cmp',
+            dependencies = { 'rafamadriz/friendly-snippets' },
+            version = '1.*',
+            opts = {
+                -- See :h blink-cmp-config-keymap for defining your own keymap
+                keymap = { preset = 'default' },
+
+                appearance = {
+                    nerd_font_variant = 'mono'
+                },
+                completion = { documentation = { auto_show = false } },
+                signature = { enabled = true },
+            },
+        },
+        {
+            'nvimdev/indentmini.nvim',
+            event = 'BufEnter',
+            config = function()
+                require('indentmini').setup()
+			end,
 		},
-
 		{
-			"ThePrimeagen/harpoon",
-			branch = "harpoon2",
-			dependencies = { {"nvim-lua/plenary.nvim"} }
-		},
-
-		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-
-		'nvim-tree/nvim-web-devicons',
-
-		'nyoom-engineering/oxocarbon.nvim',
-
-		{
-			"nvim-treesitter/nvim-treesitter",
-			branch = "master",
-			lazy = false,
-			build = ":TSUpdate"
-		},
-
-		'nvim-treesitter/playground',
-
-		{
-			'saghen/blink.cmp',
-			dependencies = { 'rafamadriz/friendly-snippets' },
-			version = '1.*',
-			opts = {
-				-- See :h blink-cmp-config-keymap for defining your own keymap
-				keymap = { preset = 'default' },
-
-				appearance = {
-					nerd_font_variant = 'mono'
-				},
-				completion = { documentation = { auto_show = false } },
-				signature = { enabled = true },
-			},
+			'nvim-lualine/lualine.nvim',
+			dependencies = { 'nvim-tree/nvim-web-devicons' }
 		},
 	},
 	-- automatically check for plugin updates

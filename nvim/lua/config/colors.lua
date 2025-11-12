@@ -2,26 +2,28 @@ function _G.mycolors (opts)
 
 	-- Define default colorscheme and colors
 	local color = "oxocarbon";
-	local transparent = true;
+	Transparent = true;
 	local baseColor = "#161616"
 	local commentColor = "#525252"
+	local visualColor = commentColor;
 
 	if (opts and opts.args ~= "") then
 		local args = vim.split(opts.args, "%s+")
 		if (#args == 1) then
-			transparent = (args[1] == "true") or false;
+			Transparent = (args[1] == "true") or false;
 		else
 			color = args[1];
-			transparent = (args[2] == "true") or false;
+			Transparent = (args[2] == "true") or false;
 		end
 	end
 
 	vim.cmd.colorscheme(color);
 
 	-- Define colors
-	if (transparent == true) then
+	if (Transparent == true) then
 		baseColor = "none"
 		commentColor = "#3ddbd9"
+		visualColor = "#363646"
 	end
 
 	local accent = "#ff237f"
@@ -56,13 +58,16 @@ function _G.mycolors (opts)
 	vim.api.nvim_set_hl(0, "StatusLine", { bg = baseColor })
 	vim.api.nvim_set_hl(0, "FloatBorder", { fg = accent })
 	vim.api.nvim_set_hl(0, "Comment", { fg = commentColor })
+	vim.api.nvim_set_hl(0, "IndentLine", { fg = "#525252" })
+	vim.api.nvim_set_hl(0, "IndentLineCurrent", { fg = commentColor })
+	vim.api.nvim_set_hl(0, "Visual", { bg = visualColor })
 
 end
 
-mycolors()
+_G.mycolors()
 vim.api.nvim_create_user_command('Colors', mycolors, { nargs="*"});
 vim.api.nvim_create_user_command('ToggleTransparency', function()
-	mycolors({args="oxocarbon "..tostring((not transparent))});
+	_G.mycolors({args=""..tostring(not Transparent)});
 end, { nargs="*"});
 
 return {}

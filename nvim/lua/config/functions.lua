@@ -1,17 +1,18 @@
-function comment(ctype)
+function Comment(ctype)
 	vim.cmd("normal! 0i"..ctype.."\t");
 end
 
-function uncomment(ctype)
+function Uncomment(ctype)
 
-	n = ctype:len()+1;
+	local n = ctype:len()+1;
+	print(n);
 	if (ctype == "#") then -- Fix [\t] being converted to 3 spaces after [#]
 		n = n + 2;
 	end
 
 	vim.cmd("normal! 0"..n.."x");
 end
-function commentBlock(ctype)
+function CommentBlock(ctype)
 
 	local s = vim.fn.line("'<");
 	local e = vim.fn.line("'>");
@@ -21,33 +22,33 @@ function commentBlock(ctype)
 	end
 end
 
-function uncommentBlock(ctype)
+function UncommentBlock(ctype)
 
 	local s = vim.fn.line("'<");
 	local e = vim.fn.line("'>");
 
 	print("oie");
 	for line = s, e do
-		n = ctype:len() + 2;
+		local n = ctype:len() + 2;
 		vim.fn.setline(line, vim.fn.getline(line):sub(n));
 	end
 end
 
-vim.keymap.set("x", "<leader>c", function() 
-	vim.cmd("normal! gv"); 
-	commentBlock("--"); 
+vim.keymap.set("x", "<leader>c", function()
+	vim.cmd("normal! gv");
+	CommentBlock("--");
 end)
 
-vim.keymap.set("x", "<leader>d", function() 
-	vim.cmd("normal! gv"); 
-	uncommentBlock("--"); 
+vim.keymap.set("x", "<leader>d", function()
+	vim.cmd("normal! gv");
+	UncommentBlock("--");
 end)
 
-function setCompletion(COMPLETION)
+function SetCompletion(COMPLETION)
 	vim.cmd("inoremap <buffer> BLOB "..COMPLETION);
 end
 
-function toggleHex()
+function ToggleHex()
 	if (HEX_EDITOR == false) then
 		vim.cmd("%!xxd");
 	else

@@ -1,2 +1,2 @@
 COMMENT_TYPE = "#"
-setCompletion("from puddoautogui import *;<CR>");
+SetCompletion("from puddoautogui import *;<CR>");
