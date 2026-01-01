@@ -7,9 +7,6 @@ argc=$#
 
 # Shift comand arguments
 shift
-for i in "${@:2}"
-do :
-done
 
 argv=$@
 
