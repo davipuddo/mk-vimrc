@@ -16,12 +16,12 @@ argv=$@
 
 compC ()
 {
-	gcc -o $fname $file -lm -Wall
+	gcc -o $fname $file -lm -Wall -fopenmp
 }
 
 compCPP ()
 {
-	g++ -o $fname $file -lm -Wall
+	g++ -o $fname $file -lm -Wall -fopenmp
 }
 
 compCSharp ()
