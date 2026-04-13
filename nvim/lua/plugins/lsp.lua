@@ -1,7 +1,28 @@
 local lsps = {
-	{ "lua_ls" },
+	{
+		"lua_ls",
+		{
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" }
+					},
+					workspace = {
+						library = vim.api.nvim_get_runtime_file("", true)
+					}
+				}
+			}
+		}
+	},
+	{ "jdtls" },
 	{ "clangd" },
+	{ "ts_ls" },
+	{ "cssls" },
+	{ "html" },
+	{ "jsonls" },
 	{ "nvim-flutter/flutter-tools.nvim" },
+	{ "zls" },
+	{ "bashls" },
 	{
 		"pylsp",
 		{
@@ -42,12 +63,7 @@ vim.diagnostic.config({
 	severity_sort = true,
 	signs = false,
 })
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
-		virtual_text = true,
-	}
-);
 
-return {
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 
-}
+return {}

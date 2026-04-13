@@ -58,7 +58,7 @@ vim.keymap.set("n", "<leader>r", "vey:s/<C-r>0/");
 vim.keymap.set("n", "<leader>R", "vey:%s/<C-r>0/");
 
 -- Toggle Hex editor
-vim.keymap.set("n", "<leader>X", function() toggleHex() end);
+vim.keymap.set("n", "<leader>X", function() ToggleHex() end);
 
 -- Toggle diagnostics
 vim.keymap.set("n", "<leader>LD", function() 
