@@ -24,6 +24,11 @@ compCPP ()
 	g++ -o $fname $file -lm -Wall -fopenmp
 }
 
+compSystemVerilog()
+{
+    verilator --binary $file -o $fname
+}
+
 compCSharp ()
 {
 	mcs $file -out:$fname
@@ -75,6 +80,11 @@ runSwift ()
 runLua ()
 {
 	lua $file $argv
+}
+
+runSystemVerilog() 
+{
+    ./obj_dir/$fname
 }
 
 # Compile & run code
@@ -135,6 +145,9 @@ elif [ "$ext" == 'lua' ]; then
 elif [ "$ext" == 'rs' ]; then
 	compRust
 	run
+elif [ "$ext" == 'sv' ]; then
+	compSystemVerilog
+	runSystemVerilog
 else 
 	printf "ERROR: The given file extension resulted in no matches!\n-> [$ext]\n"
 fi
