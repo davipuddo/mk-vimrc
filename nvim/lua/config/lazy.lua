@@ -44,7 +44,7 @@ require("lazy").setup({
 
         {
             'nvim-telescope/telescope.nvim',
-            tag = '0.1.8',
+			branch = "master",
             dependencies = { 'nvim-lua/plenary.nvim' },
         },
 
@@ -62,12 +62,15 @@ require("lazy").setup({
 
         {
             "nvim-treesitter/nvim-treesitter",
-            branch = "master",
+            branch = "main",
             lazy = false,
             build = ":TSUpdate"
         },
 
-        'nvim-treesitter/playground',
+		{
+			"romus204/tree-sitter-manager.nvim",
+			dependencies = {}, -- tree-sitter-cli
+		},
 
         {
             'saghen/blink.cmp',
