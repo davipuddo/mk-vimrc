@@ -42,6 +42,7 @@ local lsps = {
 			},
 		},
 	},
+	{ "verible" }
 }
 
 for _, lsp in pairs(lsps) do

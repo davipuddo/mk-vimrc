@@ -24,7 +24,7 @@ vim.g.mapleader = " ";
 vim.g.maplocalleader = "\\";
 vim.wo.relativenumber = true;
 vim.wo.number = true;
-vim.o.expandtab = false;
+vim.o.expandtab = true;
 vim.o.tabstop = 4;
 vim.o.shiftwidth = 4;
 vim.o.timeoutlen = 300;
@@ -40,32 +40,40 @@ require("lazy").setup({
 
         "williamboman/mason.nvim",
 
-        { import = "plugins.lsp" },
+		{ import = "plugins.lsp" },
 
-        {
-            'nvim-telescope/telescope.nvim',
+		{
+			'nvim-telescope/telescope.nvim',
 			branch = "master",
-            dependencies = { 'nvim-lua/plenary.nvim' },
-        },
+			dependencies = { 'nvim-lua/plenary.nvim' },
+		},
 
-        {
-            "ThePrimeagen/harpoon",
-            branch = "harpoon2",
-            dependencies = { {"nvim-lua/plenary.nvim"} }
-        },
+		{
+			"ThePrimeagen/harpoon",
+			branch = "harpoon2",
+			dependencies = { {"nvim-lua/plenary.nvim"} }
+		},
 
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
-        'nvim-tree/nvim-web-devicons',
+		'nvim-tree/nvim-web-devicons',
 
-        'nyoom-engineering/oxocarbon.nvim',
+		'nyoom-engineering/oxocarbon.nvim',
 
-        {
-            "nvim-treesitter/nvim-treesitter",
-            branch = "main",
-            lazy = false,
-            build = ":TSUpdate"
-        },
+		{
+			"nvim-treesitter/nvim-treesitter",
+			branch = "main",
+			lazy = false,
+			build = ":TSUpdate"
+		},
+
+		{
+			'MeanderingProgrammer/render-markdown.nvim',
+			dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+			---@module 'render-markdown'
+			---@type render.md.UserConfig
+			opts = {},
+		},
 
 		{
 			"romus204/tree-sitter-manager.nvim",
