@@ -16,12 +16,12 @@ argv=$@
 
 compC ()
 {
-	gcc -o $fname $file -lm -Wall -fopenmp
+	gcc -o $fname $file -lm -Wall -Wextra -fopenmp -O3
 }
 
 compCPP ()
 {
-	g++ -o $fname $file -lm -Wall -fopenmp
+	g++ -o $fname $file -lm -Wall -Wextra -fopenmp -O3
 }
 
 compSystemVerilog()
